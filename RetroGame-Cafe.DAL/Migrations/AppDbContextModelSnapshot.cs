@@ -40,6 +40,38 @@ namespace RetroGame_Cafe.DAL.Migrations
 
                     b.ToTable("Consoles", (string)null);
                 });
+
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.VideoGameEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("FK_Console_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(75)
+                        .HasColumnType("nvarchar(75)");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
+
+                    b.ToTable("VideoGames", (string)null);
+                });
+
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.VideoGameEntity", b =>
+                {
+                    b.HasOne("RetroGame_Cafe.DAL.Entities.ConsoleEntity", "Console")
+                        .WithOne()
+                        .HasForeignKey("RetroGame_Cafe.DAL.Entities.VideoGameEntity", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Console");
+                });
 #pragma warning restore 612, 618
         }
     }
