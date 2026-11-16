@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="RetroGame-Cafe.BLL/RetroGame-Cafe.BLL.csproj" />
+  <Project Path="RetroGame-Cafe.DAL/RetroGame-Cafe.DAL.csproj" />
+  <Project Path="RetroGame-Cafe/RetroGame-Cafe.csproj" />
+</Solution>
