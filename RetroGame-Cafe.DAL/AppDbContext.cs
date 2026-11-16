@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RetroGame_Cafe.DAL.Entities;
 using System.Reflection;
 
 namespace RetroGame_Cafe.DAL
@@ -8,6 +9,8 @@ namespace RetroGame_Cafe.DAL
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
+
+        public DbSet<ConsoleEntity> Consoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
