@@ -21,6 +21,24 @@ namespace RetroGame_Cafe.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.CategorieEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
+
+                    b.ToTable("Categories", (string)null);
+                });
+
             modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.ConsoleEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -39,6 +57,42 @@ namespace RetroGame_Cafe.DAL.Migrations
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
 
                     b.ToTable("Consoles", (string)null);
+                });
+
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.ProductEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Fk_Categorie_Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsVegie")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("Price")
+                        .HasPrecision(2)
+                        .HasColumnType("float(2)");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
+
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.VideoGameEntity", b =>
@@ -62,6 +116,15 @@ namespace RetroGame_Cafe.DAL.Migrations
                     b.ToTable("VideoGames", (string)null);
                 });
 
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.CategorieEntity", b =>
+                {
+                    b.HasOne("RetroGame_Cafe.DAL.Entities.ProductEntity", null)
+                        .WithOne("Categorie")
+                        .HasForeignKey("RetroGame_Cafe.DAL.Entities.CategorieEntity", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.VideoGameEntity", b =>
                 {
                     b.HasOne("RetroGame_Cafe.DAL.Entities.ConsoleEntity", "Console")
@@ -71,6 +134,12 @@ namespace RetroGame_Cafe.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Console");
+                });
+
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.ProductEntity", b =>
+                {
+                    b.Navigation("Categorie")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

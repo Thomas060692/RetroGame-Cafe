@@ -12,6 +12,8 @@ namespace RetroGame_Cafe.DAL
 
         public DbSet<ConsoleEntity> Consoles { get; set; }
         public DbSet<VideoGameEntity> VideoGames { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<CategorieEntity> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
