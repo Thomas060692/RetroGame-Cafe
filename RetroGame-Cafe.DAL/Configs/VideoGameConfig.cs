@@ -21,8 +21,8 @@ namespace RetroGame_Cafe.DAL.Configs
                    .IsRequired();
 
             builder.HasOne(v => v.Console)
-                   .WithOne()
-                   .HasPrincipalKey<ConsoleEntity>(c => c.Id)
+                   .WithMany()
+                   .HasForeignKey(v => v.FK_Console_Id)
                    .IsRequired();
         }
     }

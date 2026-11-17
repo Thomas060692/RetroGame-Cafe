@@ -2,7 +2,7 @@
 {
     public class MemberEntity
     {
-        public required int Id { get; set; }
+        public int Id { get; set; }
         public string? FristName { get; set; }
         public string? LastName { get; set; }
         public required string Email { get; set; }

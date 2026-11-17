@@ -11,8 +11,8 @@ using RetroGame_Cafe.DAL;
 namespace RetroGame_Cafe.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261116081411_ConsoleTable")]
-    partial class ConsoleTable
+    [Migration("20261117153544_VideoGamesTable")]
+    partial class VideoGamesTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,6 +42,42 @@ namespace RetroGame_Cafe.DAL.Migrations
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
 
                     b.ToTable("Consoles", (string)null);
+                });
+
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.VideoGameEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FK_Console_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(75)
+                        .HasColumnType("nvarchar(75)");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
+
+                    b.HasIndex("FK_Console_Id");
+
+                    b.ToTable("VideoGames", (string)null);
+                });
+
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.VideoGameEntity", b =>
+                {
+                    b.HasOne("RetroGame_Cafe.DAL.Entities.ConsoleEntity", "Console")
+                        .WithMany()
+                        .HasForeignKey("FK_Console_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Console");
                 });
 #pragma warning restore 612, 618
         }

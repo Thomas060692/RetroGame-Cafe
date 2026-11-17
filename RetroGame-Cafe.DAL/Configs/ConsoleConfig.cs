@@ -10,7 +10,7 @@ namespace RetroGame_Cafe.DAL.Configs
         {
             builder.ToTable("Consoles");
 
-            builder.HasKey("Id")
+            builder.HasKey(c => c.Id)
                    .IsClustered();
 
             builder.Property(x => x.Id)

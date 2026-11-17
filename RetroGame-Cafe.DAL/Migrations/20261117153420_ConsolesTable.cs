@@ -5,7 +5,7 @@
 namespace RetroGame_Cafe.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class ConsoleTable : Migration
+    public partial class ConsolesTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

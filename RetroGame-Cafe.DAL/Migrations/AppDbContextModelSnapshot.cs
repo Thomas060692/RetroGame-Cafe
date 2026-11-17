@@ -27,6 +27,8 @@ namespace RetroGame_Cafe.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -69,27 +71,40 @@ namespace RetroGame_Cafe.DAL.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("FristName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Pseudo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Pseudo")
+                        .IsUnique();
 
                     b.ToTable("Members", (string)null);
                 });
@@ -127,6 +142,8 @@ namespace RetroGame_Cafe.DAL.Migrations
 
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
 
+                    b.HasIndex("Fk_Categorie_Id");
+
                     b.ToTable("Products", (string)null);
                 });
 
@@ -135,6 +152,8 @@ namespace RetroGame_Cafe.DAL.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("FK_Console_Id")
                         .HasColumnType("int");
@@ -148,33 +167,31 @@ namespace RetroGame_Cafe.DAL.Migrations
 
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
 
+                    b.HasIndex("FK_Console_Id");
+
                     b.ToTable("VideoGames", (string)null);
                 });
 
-            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.CategorieEntity", b =>
+            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.ProductEntity", b =>
                 {
-                    b.HasOne("RetroGame_Cafe.DAL.Entities.ProductEntity", null)
-                        .WithOne("Categorie")
-                        .HasForeignKey("RetroGame_Cafe.DAL.Entities.CategorieEntity", "Id")
+                    b.HasOne("RetroGame_Cafe.DAL.Entities.CategorieEntity", "Categorie")
+                        .WithMany()
+                        .HasForeignKey("Fk_Categorie_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Categorie");
                 });
 
             modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.VideoGameEntity", b =>
                 {
                     b.HasOne("RetroGame_Cafe.DAL.Entities.ConsoleEntity", "Console")
-                        .WithOne()
-                        .HasForeignKey("RetroGame_Cafe.DAL.Entities.VideoGameEntity", "Id")
+                        .WithMany()
+                        .HasForeignKey("FK_Console_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Console");
-                });
-
-            modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.ProductEntity", b =>
-                {
-                    b.Navigation("Categorie")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -32,8 +32,8 @@ namespace RetroGame_Cafe.DAL.Configs
                    .IsRequired();
 
             builder.HasOne(p => p.Categorie)
-                   .WithOne()
-                   .HasForeignKey<CategorieEntity>(c => c.Id)
+                   .WithMany()
+                   .HasForeignKey(c => c.Fk_Categorie_Id)
                    .IsRequired();
         }
     }

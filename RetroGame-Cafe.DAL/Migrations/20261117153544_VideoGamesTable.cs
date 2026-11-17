@@ -5,7 +5,7 @@
 namespace RetroGame_Cafe.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class VideoGameTable : Migration
+    public partial class VideoGamesTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,7 +14,8 @@ namespace RetroGame_Cafe.DAL.Migrations
                 name: "VideoGames",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: false),
                     FK_Console_Id = table.Column<int>(type: "int", nullable: false)
                 },
@@ -23,12 +24,17 @@ namespace RetroGame_Cafe.DAL.Migrations
                     table.PrimaryKey("PK_VideoGames", x => x.Id)
                         .Annotation("SqlServer:Clustered", true);
                     table.ForeignKey(
-                        name: "FK_VideoGames_Consoles_Id",
-                        column: x => x.Id,
+                        name: "FK_VideoGames_Consoles_FK_Console_Id",
+                        column: x => x.FK_Console_Id,
                         principalTable: "Consoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VideoGames_FK_Console_Id",
+                table: "VideoGames",
+                column: "FK_Console_Id");
         }
 
         /// <inheritdoc />
