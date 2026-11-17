@@ -4,7 +4,7 @@ using RetroGame_Cafe.DAL.Interface;
 
 namespace RetroGame_Cafe.DAL.Repositories
 {
-    public class CategoriesRepository : ICategoriesRepository
+    public class CategoriesRepository : ICategoriesService
     {
         private readonly AppDbContext _context;
 

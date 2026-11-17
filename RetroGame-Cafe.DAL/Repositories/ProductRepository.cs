@@ -60,7 +60,6 @@ namespace RetroGame_Cafe.DAL.Repositories
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
-                Categorie = product.Categorie,
                 IsVegie = product.IsVegie,
                 Fk_Categorie_Id = product.Categorie.Id
             };

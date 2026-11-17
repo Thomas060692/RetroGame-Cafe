@@ -2,7 +2,7 @@
 
 namespace RetroGame_Cafe.DAL.Interface
 {
-    public interface ICategoriesRepository
+    public interface ICategoriesService
     {
         IEnumerable<CategorieEntity> GetAll();
 
