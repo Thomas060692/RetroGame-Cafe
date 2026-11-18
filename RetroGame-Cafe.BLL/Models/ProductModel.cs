@@ -8,5 +8,6 @@
         public double Price { get; set; }
         public bool IsVegie { get; set; }
         public int CategorieId { get; set; }
+        public string CategorieName { get; set; } = null!;
     }
 }

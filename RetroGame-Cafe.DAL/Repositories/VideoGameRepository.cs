@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using RetroGame_Cafe.DAL.Entities;
 using RetroGame_Cafe.DAL.Interface;
 
@@ -39,17 +40,17 @@ namespace RetroGame_Cafe.DAL.Repositories
 
         public IEnumerable<VideoGameEntity> GetAll()
         {
-            return _context.VideoGames.ToList();
+            return _context.VideoGames.Include(v => v.Console).ToList();
         }
 
         public VideoGameEntity? GetById(int id)
         {
-            return _context.VideoGames.SingleOrDefault(p => p.Id == id);
+            return _context.VideoGames.Include(v => v.Console).SingleOrDefault(p => p.Id == id);
         }
 
         public IEnumerable<VideoGameEntity> GetProductPerConsole(string console)
         {
-            return _context.VideoGames.Where(p => p.Console.Name == console);
+            return _context.VideoGames.Include(v => v.Console).Where(p => p.Console.Name == console);
         }
 
         public bool UpdateVideoGame(int id, VideoGameEntity product)
