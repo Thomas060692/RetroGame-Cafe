@@ -1,0 +1,13 @@
+﻿namespace RetroGame_Cafe.BLL.Models
+{
+    public class MemberModel
+    {
+        public int Id { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public required string Email { get; set; }
+        public required string Pseudo { get; set; }
+        public required string PasswordHash { get; set; }
+        public string Role { get; set; } = null!;
+    }
+}

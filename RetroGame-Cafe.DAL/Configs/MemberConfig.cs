@@ -34,6 +34,9 @@ namespace RetroGame_Cafe.DAL.Configs
                    .HasMaxLength(255)
                    .IsRequired();
 
+            builder.Property(m => m.Role)
+                   .HasMaxLength(50);
+
             builder.HasIndex(m => m.Email)
                    .IsUnique();
 

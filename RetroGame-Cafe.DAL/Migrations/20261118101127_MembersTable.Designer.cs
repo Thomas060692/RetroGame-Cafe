@@ -11,7 +11,7 @@ using RetroGame_Cafe.DAL;
 namespace RetroGame_Cafe.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261117154212_MembersTable")]
+    [Migration("20261118101127_MembersTable")]
     partial class MembersTable
     {
         /// <inheritdoc />
@@ -97,7 +97,8 @@ namespace RetroGame_Cafe.DAL.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
