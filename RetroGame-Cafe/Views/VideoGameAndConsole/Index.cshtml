@@ -1,0 +1,36 @@
+@model IEnumerable<RetroGame_Cafe.Models.VideoGameViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+
+    var consoles = ViewData["consoles"] as IEnumerable<string>;
+}
+
+<h1>Nos Consoles et Jeux Vidéo</h1>
+
+
+@foreach (var con in consoles!)
+{
+    <h3>@con</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) 
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Title)
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}
+
+
