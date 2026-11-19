@@ -5,7 +5,7 @@ using RetroGame_Cafe.DAL.Interface;
 
 namespace RetroGame_Cafe.DAL.Repositories
 {
-    public class VideoGameRepository : IVidoeGameService
+    public class VideoGameRepository : IVideoGameRepository
     {
         private readonly AppDbContext _context;
 
@@ -14,7 +14,7 @@ namespace RetroGame_Cafe.DAL.Repositories
             _context = context;
         }
 
-        public int CreatVideoGame(VideoGameEntity data)
+        public int CreateVideoGame(VideoGameEntity data)
         {
             EntityEntry<VideoGameEntity> prod = _context.VideoGames.Add(data);
 

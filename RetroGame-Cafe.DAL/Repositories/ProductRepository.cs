@@ -5,7 +5,7 @@ using RetroGame_Cafe.DAL.Interface;
 
 namespace RetroGame_Cafe.DAL.Repositories
 {
-    public class ProductRepository : IProductService
+    public class ProductRepository : IProductRepository
     {
         private readonly AppDbContext _context;
 
@@ -14,7 +14,7 @@ namespace RetroGame_Cafe.DAL.Repositories
             _context = context;
         }
 
-        public int CreatProduct(ProductEntity data)
+        public int CreateProduct(ProductEntity data)
         {
             EntityEntry<ProductEntity> prod = _context.Products.Add(data);
 
@@ -45,7 +45,7 @@ namespace RetroGame_Cafe.DAL.Repositories
 
         public IEnumerable<ProductEntity> GetProductPerCategorie(string categorie)
         {
-            return _context.Products.Include(p => p.Categorie).Where(p => p.Name == categorie);
+            return _context.Products.Include(p => p.Categorie).Where(p => p.Categorie.Name == categorie);
         }
 
         public ProductEntity? GetById(int id)

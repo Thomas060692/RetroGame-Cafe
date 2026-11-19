@@ -10,7 +10,7 @@ namespace RetroGame_Cafe.BLL.Mapper
             return new MemberEntity()
             {
                 Id = data.Id,
-                FristName = data.FirstName,
+                FirstName = data.FirstName,
                 LastName = data.LastName,
                 Email = data.Email,
                 PasswordHash = data.PasswordHash,
@@ -24,7 +24,7 @@ namespace RetroGame_Cafe.BLL.Mapper
             return new MemberModel()
             {
                 Id = data.Id,
-                FirstName = data.FristName,
+                FirstName = data.FirstName,
                 LastName = data.LastName,
                 Email = data.Email,
                 PasswordHash = data.PasswordHash,

@@ -16,7 +16,7 @@ namespace RetroGame_Cafe.DAL.Configs
             builder.Property(m => m.Id)
                    .ValueGeneratedOnAdd();
 
-            builder.Property(m => m.FristName)
+            builder.Property(m => m.FirstName)
                    .HasMaxLength(50);
 
             builder.Property(m => m.LastName)

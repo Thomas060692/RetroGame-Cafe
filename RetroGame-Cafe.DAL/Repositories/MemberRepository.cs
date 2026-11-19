@@ -4,7 +4,7 @@ using RetroGame_Cafe.DAL.Interface;
 
 namespace RetroGame_Cafe.DAL.Repositories
 {
-    public class MemberRepository : IMemberService
+    public class MemberRepository : IMemberRepository
     {
         private readonly AppDbContext _context;
 
@@ -13,7 +13,7 @@ namespace RetroGame_Cafe.DAL.Repositories
             _context = context;
         }
 
-        public int CreatMemeber(MemberEntity data)
+        public int CreateMember(MemberEntity data)
         {
             EntityEntry<MemberEntity> member = _context.Members.Add(data);
 
@@ -22,7 +22,7 @@ namespace RetroGame_Cafe.DAL.Repositories
             return member.Entity.Id;
         }
 
-        public bool DeleteMemeber(int id)
+        public bool DeleteMember(int id)
         {
             MemberEntity? mem = _context.Members.SingleOrDefault(m => m.Id == id);
 
@@ -47,11 +47,12 @@ namespace RetroGame_Cafe.DAL.Repositories
             return _context.Members.SingleOrDefault(m => m.Id == id);
         }
 
-        public bool UpdateMemeber(int id, MemberEntity data)
+        public bool UpdateMember(int id, MemberEntity data)
         {
             MemberEntity mem = new MemberEntity()
             {
-                FristName = data.FristName,
+                Id = id,
+                FirstName = data.FirstName,
                 LastName = data.LastName,
                 Pseudo = data.Pseudo,
                 Email = data.Email,

@@ -4,7 +4,7 @@ using RetroGame_Cafe.DAL.Interface;
 
 namespace RetroGame_Cafe.DAL.Repositories
 {
-    public class CategoriesRepository : ICategoriesService
+    public class CategoriesRepository : ICategoriesRepository
     {
         private readonly AppDbContext _context;
 
@@ -13,7 +13,7 @@ namespace RetroGame_Cafe.DAL.Repositories
             _context = context;
         }
 
-        public int CreatCategory(CategorieEntity data)
+        public int CreateCategory(CategorieEntity data)
         {
             EntityEntry<CategorieEntity> prod = _context.Categories.Add(data);
 

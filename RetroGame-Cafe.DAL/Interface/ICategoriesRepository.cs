@@ -2,13 +2,13 @@
 
 namespace RetroGame_Cafe.DAL.Interface
 {
-    public interface ICategoriesService
+    public interface ICategoriesRepository
     {
         IEnumerable<CategorieEntity> GetAll();
 
         CategorieEntity? GetById(int id);
 
-        int CreatCategory(CategorieEntity data);
+        int CreateCategory(CategorieEntity data);
 
         bool UpdateCategory(int id, CategorieEntity product);
 

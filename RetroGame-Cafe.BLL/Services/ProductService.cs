@@ -7,16 +7,16 @@ namespace RetroGame_Cafe.BLL.Services
 {
     public class ProductService : IProductsService
     {
-        private readonly IProductService _productService;
+        private readonly IProductRepository _productService;
 
-        public ProductService(IProductService productService)
+        public ProductService(IProductRepository productService)
         {
             _productService = productService;
         }
 
         public int CreatProduct(ProductModel data)
         {
-            int id = _productService.CreatProduct(data.ToEntity());
+            int id = _productService.CreateProduct(data.ToEntity());
 
             data.Id = id;
             return id;
@@ -38,7 +38,7 @@ namespace RetroGame_Cafe.BLL.Services
 
             if (pro is null)
             {
-                throw new Exception("ce produit n'existe pas");
+                return null;
             }
 
             return pro;

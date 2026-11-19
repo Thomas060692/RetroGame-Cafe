@@ -2,7 +2,7 @@
 
 namespace RetroGame_Cafe.DAL.Interface
 {
-    public interface IProductService
+    public interface IProductRepository
     {
         IEnumerable<ProductEntity> GetAll();
 
@@ -10,7 +10,7 @@ namespace RetroGame_Cafe.DAL.Interface
 
         ProductEntity? GetById(int id);
 
-        int CreatProduct(ProductEntity data);
+        int CreateProduct(ProductEntity data);
 
         bool UpdateProduct(int id, ProductEntity product);
 

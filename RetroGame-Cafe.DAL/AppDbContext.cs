@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RetroGame_Cafe.DAL.Configs;
 using RetroGame_Cafe.DAL.Entities;
+using System.Reflection;
 
 namespace RetroGame_Cafe.DAL
 {
@@ -18,12 +18,7 @@ namespace RetroGame_Cafe.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            modelBuilder.ApplyConfiguration(new ConsoleConfig());
-            modelBuilder.ApplyConfiguration(new VideoGameConfig());
-            modelBuilder.ApplyConfiguration(new CategorieConfig());
-            modelBuilder.ApplyConfiguration(new ProductConfig());
-            modelBuilder.ApplyConfiguration(new MemberConfig());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

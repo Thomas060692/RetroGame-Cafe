@@ -7,16 +7,16 @@ namespace RetroGame_Cafe.BLL.Services
 {
     public class CategorieService : ICategorieService
     {
-        private readonly ICategoriesService _service;
+        private readonly ICategoriesRepository _service;
 
-        public CategorieService(ICategoriesService service)
+        public CategorieService(ICategoriesRepository service)
         {
             _service = service;
         }
 
         public CategorieModel CreatCategory(CategorieModel data)
         {
-            int id = _service.CreatCategory(data.ToEntity());
+            int id = _service.CreateCategory(data.ToEntity());
 
             data.Id = id;
             return data;
@@ -38,7 +38,7 @@ namespace RetroGame_Cafe.BLL.Services
 
             if (cat is null)
             {
-                throw new Exception("cette catégorie n'existe pas");
+                return null;
             }
 
             return cat;

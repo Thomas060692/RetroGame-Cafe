@@ -7,16 +7,16 @@ namespace RetroGame_Cafe.BLL.Services
 {
     public class MemberService : IMembersService
     {
-        private readonly IMemberService _memberService;
+        private readonly IMemberRepository _memberService;
 
-        public MemberService(IMemberService memberService)
+        public MemberService(IMemberRepository memberService)
         {
             _memberService = memberService;
         }
 
         public int CreatMemeber(MemberModel data)
         {
-            int id = _memberService.CreatMemeber(data.ToEntity());
+            int id = _memberService.CreateMember(data.ToEntity());
 
             data.Id = id;
             return id;
@@ -24,7 +24,7 @@ namespace RetroGame_Cafe.BLL.Services
 
         public bool DeleteMemeber(int id)
         {
-            return _memberService.DeleteMemeber(id);
+            return _memberService.DeleteMember(id);
         }
 
         public IEnumerable<MemberModel> GetALL()
@@ -38,7 +38,7 @@ namespace RetroGame_Cafe.BLL.Services
 
             if (mem is null)
             {
-                throw new Exception("ce membre n'existe pas");
+                return null;
             }
 
             return mem;
@@ -48,7 +48,7 @@ namespace RetroGame_Cafe.BLL.Services
         {
             try
             {
-                _memberService.UpdateMemeber(id, data.ToEntity());
+                _memberService.UpdateMember(id, data.ToEntity());
             }
             catch (Exception)
             {

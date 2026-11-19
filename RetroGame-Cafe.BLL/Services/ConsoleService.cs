@@ -7,16 +7,16 @@ namespace RetroGame_Cafe.BLL.Services
 {
     public class ConsoleService : IConsoleService
     {
-        private readonly IConsolesService _consolesService;
+        private readonly IConsolesRepository _consolesService;
 
-        public ConsoleService(IConsolesService consolesService)
+        public ConsoleService(IConsolesRepository consolesService)
         {
             _consolesService = consolesService;
         }
 
         public ConsoleModel CreatConsole(ConsoleModel data)
         {
-            int id = _consolesService.CreatConsole(data.ToEntity());
+            int id = _consolesService.CreateConsole(data.ToEntity());
 
             data.Id = id;
             return data;
@@ -29,17 +29,33 @@ namespace RetroGame_Cafe.BLL.Services
 
         public IEnumerable<ConsoleModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _consolesService.GetAll().Select(c => c.ToModel()).ToList();
         }
 
         public ConsoleModel? GetById(int id)
         {
-            throw new NotImplementedException();
+            ConsoleModel? con = _consolesService.GetById(id)?.ToModel();
+
+            if (con is null)
+            {
+                return null;
+            }
+
+            return con;
         }
 
-        public bool UpdateConsole(int id, ConsoleModel product)
+        public bool UpdateConsole(int id, ConsoleModel data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _consolesService.UpdateConsole(id, data.ToEntity())
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

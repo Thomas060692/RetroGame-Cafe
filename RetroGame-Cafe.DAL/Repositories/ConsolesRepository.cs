@@ -4,7 +4,7 @@ using RetroGame_Cafe.DAL.Interface;
 
 namespace RetroGame_Cafe.DAL.Repositories
 {
-    public class ConsolesRepository : IConsolesService
+    public class ConsolesRepository : IConsolesRepository
     {
         private readonly AppDbContext _context;
 
@@ -13,7 +13,7 @@ namespace RetroGame_Cafe.DAL.Repositories
             _context = context;
         }
 
-        public int CreatConsole(ConsoleEntity data)
+        public int CreateConsole(ConsoleEntity data)
         {
             EntityEntry<ConsoleEntity> prod = _context.Consoles.Add(data);
 

@@ -2,7 +2,7 @@
 
 namespace RetroGame_Cafe.DAL.Interface
 {
-    public interface IVidoeGameService
+    public interface IVideoGameRepository
     {
         IEnumerable<VideoGameEntity> GetAll();
 
@@ -10,7 +10,7 @@ namespace RetroGame_Cafe.DAL.Interface
 
         VideoGameEntity? GetById(int id);
 
-        int CreatVideoGame(VideoGameEntity data);
+        int CreateVideoGame(VideoGameEntity data);
 
         bool UpdateVideoGame(int id, VideoGameEntity product);
 

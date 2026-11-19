@@ -1,22 +1,20 @@
-﻿using RetroGame_Cafe.BLL.Interfaces;
-using RetroGame_Cafe.BLL.Mapper;
+﻿using RetroGame_Cafe.BLL.Mapper;
 using RetroGame_Cafe.BLL.Models;
-using RetroGame_Cafe.DAL.Interface;
 
 namespace RetroGame_Cafe.BLL.Services
 {
-    public class VideoGameService : IVideoGameService
+    public class VideoGameService : Interfaces.IVideoGameService
     {
-        private readonly IVidoeGameService _vidoeGame;
+        private readonly DAL.Interface.IVideoGameRepository _vidoeGame;
 
-        public VideoGameService(IVidoeGameService vidoeGame)
+        public VideoGameService(DAL.Interface.IVideoGameRepository vidoeGame)
         {
             _vidoeGame = vidoeGame;
         }
 
         public int CreatVideoGame(VideoGameModel data)
         {
-            int id = _vidoeGame.CreatVideoGame(data.ToEntity());
+            int id = _vidoeGame.CreateVideoGame(data.ToEntity());
 
             data.Id = id;
             return id;
@@ -38,7 +36,7 @@ namespace RetroGame_Cafe.BLL.Services
 
             if (vid is null)
             {
-                throw new Exception("ce jeux n'existe pas");
+                return null;
             }
 
             return vid;
@@ -58,7 +56,6 @@ namespace RetroGame_Cafe.BLL.Services
             }
             catch (Exception)
             {
-
                 return false;
             }
 

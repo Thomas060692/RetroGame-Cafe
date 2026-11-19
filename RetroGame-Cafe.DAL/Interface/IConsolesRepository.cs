@@ -2,13 +2,13 @@
 
 namespace RetroGame_Cafe.DAL.Interface
 {
-    public interface IConsolesService
+    public interface IConsolesRepository
     {
         IEnumerable<ConsoleEntity> GetAll();
 
         ConsoleEntity? GetById(int id);
 
-        int CreatConsole(ConsoleEntity data);
+        int CreateConsole(ConsoleEntity data);
 
         bool UpdateConsole(int id, ConsoleEntity product);
 

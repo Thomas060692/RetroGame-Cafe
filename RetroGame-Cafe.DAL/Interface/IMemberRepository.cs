@@ -2,12 +2,12 @@
 
 namespace RetroGame_Cafe.DAL.Interface
 {
-    public interface IMemberService
+    public interface IMemberRepository
     {
         IEnumerable<MemberEntity> GetALL();
         MemberEntity? GetMemberById(int id);
-        int CreatMemeber(MemberEntity data);
-        bool UpdateMemeber(int id, MemberEntity data);
-        bool DeleteMemeber(int id);
+        int CreateMember(MemberEntity data);
+        bool UpdateMember(int id, MemberEntity data);
+        bool DeleteMember(int id);
     }
 }

@@ -24,7 +24,7 @@ namespace RetroGame_Cafe.DAL.Configs
                    .HasMaxLength(150);
 
             builder.Property(p => p.Price)
-                   .HasPrecision(2)
+                   .HasPrecision(10, 2)
                    .IsRequired();
 
             builder.Property(p => p.IsVegie)
