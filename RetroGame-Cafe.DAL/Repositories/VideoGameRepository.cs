@@ -53,16 +53,18 @@ namespace RetroGame_Cafe.DAL.Repositories
             return _context.VideoGames.Include(v => v.Console).Where(p => p.Console.Name == console);
         }
 
-        public bool UpdateVideoGame(int id, VideoGameEntity product)
+        public bool UpdateVideoGame(int id, VideoGameEntity game)
         {
-            VideoGameEntity prod = new VideoGameEntity()
-            {
-                Id = id,
-                Title = product.Title,
-                FK_Console_Id = product.Console.Id,
-            };
+            VideoGameEntity? gam = _context.VideoGames.Find(id);
 
-            _context.Update(prod);
+            if (gam is null)
+            {
+                return false;
+            }
+
+            gam.Title = game.Title;
+            gam.FK_Console_Id = game.FK_Console_Id;
+
             _context.SaveChanges();
 
             return true;

@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using RetroGame_Cafe.BLL.Interfaces;
+using RetroGame_Cafe.BLL.Services;
 using RetroGame_Cafe.DAL;
+using RetroGame_Cafe.DAL.Interface;
+using RetroGame_Cafe.DAL.Repositories;
 
 namespace RetroGame_Cafe
 {
@@ -16,6 +20,15 @@ namespace RetroGame_Cafe
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IVideoGameRepository, VideoGameRepository>();
+            builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+
+            builder.Services.AddScoped<IProductsService, ProductService>();
+            builder.Services.AddScoped<IVideoGameService, VideoGameService>();
+            builder.Services.AddScoped<IMembersService, MemberService>();
+
 
             var app = builder.Build();
 

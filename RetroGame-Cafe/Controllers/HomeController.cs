@@ -11,7 +11,7 @@ namespace RetroGame_Cafe.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }

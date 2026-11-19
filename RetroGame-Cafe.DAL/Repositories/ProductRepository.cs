@@ -55,17 +55,19 @@ namespace RetroGame_Cafe.DAL.Repositories
 
         public bool UpdateProduct(int id, ProductEntity product)
         {
-            ProductEntity prod = new ProductEntity()
-            {
-                Id = id,
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price,
-                IsVegie = product.IsVegie,
-                Fk_Categorie_Id = product.Categorie.Id
-            };
+            ProductEntity? pro = _context.Products.Find(id);
 
-            _context.Update(prod);
+            if (pro is null)
+            {
+                return false;
+            }
+
+            pro.Name = product.Name;
+            pro.Description = product.Description;
+            pro.Price = product.Price;
+            pro.IsVegie = product.IsVegie;
+            pro.Fk_Categorie_Id = product.Fk_Categorie_Id;
+
             _context.SaveChanges();
 
             return true;

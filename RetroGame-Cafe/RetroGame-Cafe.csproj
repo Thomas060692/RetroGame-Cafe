@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RetroGame-Cafe.BLL\RetroGame-Cafe.BLL.csproj" />
     <ProjectReference Include="..\RetroGame-Cafe.DAL\RetroGame-Cafe.DAL.csproj" />
   </ItemGroup>
 

@@ -48,7 +48,7 @@ namespace RetroGame_Cafe.BLL.Services
         {
             try
             {
-                _consolesService.UpdateConsole(id, data.ToEntity())
+                _consolesService.UpdateConsole(id, data.ToEntity());
             }
             catch (Exception)
             {

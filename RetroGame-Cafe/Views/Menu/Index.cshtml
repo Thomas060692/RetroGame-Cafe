@@ -1,0 +1,50 @@
+@model IEnumerable<RetroGame_Cafe.Models.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Liste des produits";
+}
+
+<h1>Liste des produits</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsVegie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategorieName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.IsVegie)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CategorieName)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

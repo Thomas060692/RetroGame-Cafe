@@ -15,4 +15,3 @@ namespace RetroGame_Cafe.BLL.Interfaces
         bool DeleteCategory(int id);
     }
 }
-}
