@@ -42,6 +42,17 @@ namespace RetroGame_Cafe.DAL.Configs
 
             builder.HasIndex(m => m.Pseudo)
                    .IsUnique();
+
+            builder.HasData(new MemberEntity()
+            {
+                Id = 1,
+                FirstName = "Lepetit",
+                LastName = "Pédestre",
+                Email = "lepetit.Pedestre@lion.kml",
+                Pseudo = "le chevalier au lion",
+                PasswordHash = "$argon2id$v=19$m=16,t=2,p=1$S2FhbWVsb3R0$RMdfjijCRSLEaq9eu5U/tw",
+                Role = "Admin"
+            });
         }
     }
 }

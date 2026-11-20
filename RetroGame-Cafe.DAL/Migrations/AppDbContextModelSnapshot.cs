@@ -108,6 +108,18 @@ namespace RetroGame_Cafe.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Members", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "lepetit.Pedestre@lion.kml",
+                            FirstName = "Lepetit",
+                            LastName = "Pédestre",
+                            PasswordHash = "$argon2id$v=19$m=16,t=2,p=1$S2FhbWVsb3R0$RMdfjijCRSLEaq9eu5U/tw",
+                            Pseudo = "le chevalier au lion",
+                            Role = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("RetroGame_Cafe.DAL.Entities.ProductEntity", b =>

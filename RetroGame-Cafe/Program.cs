@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using RetroGame_Cafe.BLL.Helpper;
 using RetroGame_Cafe.BLL.Interfaces;
 using RetroGame_Cafe.BLL.Services;
 using RetroGame_Cafe.DAL;
@@ -28,6 +30,16 @@ namespace RetroGame_Cafe
             builder.Services.AddScoped<IProductsService, ProductService>();
             builder.Services.AddScoped<IVideoGameService, VideoGameService>();
             builder.Services.AddScoped<IMembersService, MemberService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IHasherHelper, HasherHelper>();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                            .AddCookie(option =>
+                            {
+                                option.LoginPath = "/Auth/Login";
+                                option.AccessDeniedPath = "/Auth/Login";
+                                option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                            });
 
 
             var app = builder.Build();
@@ -43,6 +55,7 @@ namespace RetroGame_Cafe
             app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapStaticAssets();

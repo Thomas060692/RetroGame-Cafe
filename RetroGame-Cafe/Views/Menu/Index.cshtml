@@ -6,45 +6,70 @@
 
 <h1>Liste des produits</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsVegie)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategorieName)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.IsVegie)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.CategorieName)
-            </td>
-        </tr>
+@if (User.IsInRole("Admin") || User.IsInRole("Modo"))
+{
+    <a asp-action="Create">Create New</a>
 }
-    </tbody>
-</table>
+
+@foreach(var cat in ViewBag.Categories)
+{
+    <h3>@cat</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsVegie)
+                </th>
+                @if(User.Identity?.IsAuthenticated == true)
+                {
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.IsVegie)
+                </td>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <td>
+                        @if(User.IsInRole("Admin") || User.IsInRole("Modo"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                        }
+                                
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>    
+                        }
+                    </td>
+                }
+            </tr>
+    }
+        </tbody>
+    </table>
+}
+
+

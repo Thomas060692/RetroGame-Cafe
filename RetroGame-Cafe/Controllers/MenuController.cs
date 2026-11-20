@@ -18,6 +18,8 @@ namespace RetroGame_Cafe.Controllers
         {
             IEnumerable<ProductViewModel> data = productsService.GetAll().Select(p => p.ToViewModel()).ToList();
 
+            ViewBag.Categories = data.Select(c => c.CategorieName).Distinct().ToList();
+
             return View(data);
         }
     }
