@@ -36,6 +36,18 @@ Solution/
     ├── Views/           # Vues Razor (.cshtml)
     └── wwwroot/         # Ressources statiques (CSS, JS, images)
 ```
+---
+
+## 👥 Gestion des accès & Rôles
+
+Le site est librement accessible aux visiteurs sans création de compte. Les comptes utilisateurs sont **exclusivement réservés à l'équipe de gestion du café**, répartis selon deux niveaux de permissions :
+
+| Fonctionnalité | Visiteur (Non connecté) | Modérateur | Administrateur |
+| :--- | :---: | :---: | :---: |
+| **Consulter le site vitrine (Carte & Jeux)** | ✅ | ✅ | ✅ |
+| **Ajouter / Modifier des produits, consoles et jeux** | ❌ | ✅ | ✅ |
+| **Supprimer des produits, consoles et jeux** | ❌ | ❌ | ✅ |
+| **Gérer les membres et leurs rôles (Ajout, Modification, Suppression)** | ❌ | ❌ | ✅ |
 
 ---
 
