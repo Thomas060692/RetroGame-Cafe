@@ -19,4 +19,8 @@
     <ProjectReference Include="..\RetroGame-Cafe.DAL\RetroGame-Cafe.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\ConsoleViewModel\" />
+  </ItemGroup>
+
 </Project>

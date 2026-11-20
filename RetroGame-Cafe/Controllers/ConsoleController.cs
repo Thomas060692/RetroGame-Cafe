@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RetroGame_Cafe.BLL.Interfaces;
+using RetroGame_Cafe.BLL.Models;
 using RetroGame_Cafe.Mapper;
 using RetroGame_Cafe.Models;
 
@@ -40,9 +41,36 @@ namespace RetroGame_Cafe.Controllers
 
             consoleService.CreatConsole(cf.ToModel());
 
-            return View();
+            return RedirectToAction("Index");
         }
 
+        public IActionResult Delete([FromRoute] int id)
+        {
+            ConsoleModel? con = consoleService.GetById(id);
 
+            if (con is null)
+            {
+                ModelState.AddModelError(string.Empty, "cette console n'existe pas");
+                return RedirectToAction("Index");
+            }
+
+            return View(con.ToConsoleViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Erase([FromForm] int id)
+        {
+            ConsoleModel? con = consoleService.GetById(id);
+
+            if (con is null)
+            {
+                return View();
+            }
+
+            consoleService.DeleteConsole(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }
