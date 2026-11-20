@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+}
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="list-group" style="max-width: 400px; width: 100%;">
+        <h3>Gérer les...</h3>
+        @if(User.Identity!.IsAuthenticated == true)
+        {
+            if(User.IsInRole("Admin"))
+            {
+                <a asp-action="Member" class="list-group-item list-group-item-action">Membre</a>
+            }
+
+            <a asp-action="VideoGame" class="list-group-item list-group-item-action">Jeux</a>
+            <a asp-action="Console" class="list-group-item list-group-item-action">Console</a>
+            <a asp-action="Product" class="list-group-item list-group-item-action">Produit</a>
+            <a asp-action="Categorie" class="list-group-item list-group-item-action">Categorie</a>
+        }
+    </div>
+</div>

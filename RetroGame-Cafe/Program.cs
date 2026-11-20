@@ -26,10 +26,12 @@ namespace RetroGame_Cafe
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IVideoGameRepository, VideoGameRepository>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+            builder.Services.AddScoped<IConsolesRepository, ConsolesRepository>();
 
             builder.Services.AddScoped<IProductsService, ProductService>();
             builder.Services.AddScoped<IVideoGameService, VideoGameService>();
             builder.Services.AddScoped<IMembersService, MemberService>();
+            builder.Services.AddScoped<IConsoleService, ConsoleService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IHasherHelper, HasherHelper>();
 

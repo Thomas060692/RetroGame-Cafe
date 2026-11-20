@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RetroGame_Cafe.BLL.Interfaces;
 using RetroGame_Cafe.BLL.Models;
@@ -40,6 +41,15 @@ namespace RetroGame_Cafe.Controllers
             }
 
             await CreatMemberSessionAsync(mem);
+
+            return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             return RedirectToAction("Index", "Home");
         }
